@@ -1,5 +1,5 @@
 /**
-OneEyeSnake.java --- dice rolling game, first to 30 wins, lose turn if user/computer rolls 1
+OneEyeSnake.java --- dice rolling game, first to 30 wins, lose turn if user/computer rolls a double
 @author Ziqing Zhang, Joseph Kois, Vanessa Lopez.
 @version 1.0
 @since 2019-03-12
@@ -12,78 +12,120 @@ OneEyeSnake.java --- dice rolling game, first to 30 wins, lose turn if user/comp
 5. rolls until score = 30 then game is over
 **/
 
+//Main Class
 import java.util.Scanner;
 
 //Main Class
-public class OneEyeSnake
+public class OneEyeSnake extends PairOfDice
 {
 	public static void main(String[]args)
 	{
-		int currentHuman = 0;
-		int currentComp = 0;
-		boolean resume = true;
+		int currHuman = 0;    //current points they each have 
+		int currComp = 0;
+      
+		boolean resume_game = true;
+        //boolean true = human,  false = comp
+      
 		PairOfDice userdie = new PairOfDice();
 		PairOfDice compdie = new PairOfDice();
-		int compTotal = 0;
-		int usrTotal = 0;
+      
+		int compTotal = 0;      //Total displays the points on the top
+		int userTotal = 0;
+      
+      
 		Scanner sc = new Scanner(System.in);
-
-		while(currentHuman < 30 && currentComp < 30)
-		{
+      
+      
+    while(userTotal <= 50 && compTotal <= 50){
+		  
 			System.out.println("Current Status:" + 
 							"\n\tComputer:" + compTotal + 
-							"\n\tYou:" + usrTotal);
+							"\n\tYou:" + userTotal);
 
 			//human turn
-			while(resume == true)
-			{
-				userdie.roll();
-				if(userdie.getDie1FaceValue() == 1 || userdie.getDie2FaceValue() == 1)
-				{
-					System.out.println("Die 1: " + userdie.getDie1FaceValue() + "\tDie2: " + userdie.getDie2FaceValue());
-					System.out.println("Busted!!!");
-					resume = false;
-				}
-				else
-					currentHuman = currentHuman + userdie.getTotalFaceValue();
-					System.out.println("Round Total: " + currentHuman);
-					System.out.println("Potential Total: " + currentHuman);
-					usrTotal = usrTotal + currentHuman;
-					System.out.println("Would you like to roll again (y/n)?");
-					char input = sc.next().charAt(0);
-					if (input == 'n')
-					{
-						resume = false;
-						System.out.println(currentHuman);
+		  if(resume_game == true && currHuman <= 50)   
+		   { 
+                     userdie.roll();  //roll the dice and gets generated
+           
+                     if (userdie.roll_double() == true){
+      
+                        System.out.println("Die 1: " + userdie.getDie1FaceValue() + "\tDie2: " + userdie.getDie2FaceValue());
+			System.out.println("Busted! You got a double!");
+			resume_game = false; 
+                        System.out.println("Human player lost its turn.");
+           
+                      }
+                    else {
+            	     currHuman = 0 + userdie.getTotalFaceValue();
+		     userTotal = userTotal + currHuman;
+         	     System.out.println("Human's Potential Total: " + currHuman);
+           
+         	     System.out.println("Would you like to roll again (y/n)?");//keeps rolling their turn
+			char input = sc.next().charAt(0);
+ 
+			   if (input == 'n')     //if said no 
+			   {
+				 resume_game = false;    //goes to computer turn 
+				 // System.out.println(currHuman);
+            	           }
+            	 	     else 
+            			resume_game = true;
+             
+          			}   
 
-					}
-					else
-						resume = true;
+        } //end in human's part
+        
+    		if (resume_game == false && currComp <= 50){
+              
+				 compdie.roll(); //computers turn
+               
+                 
+				if (compdie.roll_double() == true)
+            { System.out.println("Die 1: " + compdie.getDie1FaceValue() + "\tDie2: " + compdie.getDie2FaceValue());
+				  System.out.println("Busted! You got a double!");
+				  resume_game = true; 
+              System.out.println("Computer player lost its turn.");
+            } 
+            
+            else {
+            currComp = 0 + compdie.getTotalFaceValue();
+            compTotal = compTotal + currComp;
+            System.out.println("Comp's Potential Total: " + currComp);
+            resume_game = false;
+            
+            
+            
+             if (compTotal == 50){  
+             System.out.println("The computer has won. Congratulations!"); 
+             }   
+            }      
+     } //end of comp's part
+   }//end of while
+   
+   
+   if (compTotal == 50){                 
+      System.out.println("Congratulations, the 1st player with a total of 50 has won");
+      System.out.println("Current Status:" + 
+							"\n\tComputer:" + compTotal + 
+							"\n\tYou:" + userTotal);
 
-			}
-			while(resume == false)
-			{
-				compdie.roll();
-				if(compdie.getDie1FaceValue() == 1 || compdie.getDie2FaceValue() == 1)
-				{
-					System.out.println("Die 1: " + compdie.getDie1FaceValue() + "\tDie2: " + compdie.getDie2FaceValue());
-					System.out.println("Busted!!!");
-					compTotal = 0;
-					resume = true;
-				}
-				else if(compTotal < 20)
-				{
-					System.out.println("Die 1: " + compdie.getDie1FaceValue() + "\tDie2: " + compdie.getDie2FaceValue());
-					currentComp = currentComp + compdie.getTotalFaceValue();
-					System.out.println("Round Total: " + currentComp);
-					System.out.println("Potential Total: " + currentComp);
-					compTotal = compTotal + currentComp;	
-				}
-				else
-					resume = true;
+    }
+   else {
+    System.out.println("Congratulations, the 1st player with a total of 50 has won");
+    System.out.println("Current Status:" + 
+							"\n\tComputer:" + compTotal + 
+							"\n\tYou:" + userTotal);
+                     
+       }
+       
+    
+       
+ 
+   
+   
+   
 
-			}
-		}
-		System.out.println("Congratulations!!!");
-	}
-}
+ }//end main     
+
+
+}//end class
