@@ -6,6 +6,7 @@ How to play: The player whose turn will roll the dice, if the player doesn't rol
 Current Status:
 	Computer:0
 	You:0
+	
 Human's Potential Total: 5
 Would you like to roll again (y/n)?
 y
@@ -13,6 +14,7 @@ y
 Current Status:
 	Computer:0
 	You:5
+	
 Human's Potential Total: 11
 Would you like to roll again (y/n)?
 y
@@ -20,6 +22,7 @@ y
 Current Status:
 	Computer:0
 	You:16
+	
 Human's Potential Total: 10
 Would you like to roll again (y/n)?
 y
@@ -27,6 +30,7 @@ y
 Current Status:
 	Computer:0
 	You:26
+	
 Human's Potential Total: 11
 Would you like to roll again (y/n)?
 y
@@ -34,6 +38,7 @@ y
 Current Status:
 	Computer:0
 	You:37
+	
 Human's Potential Total: 9
 Would you like to roll again (y/n)?
 y
@@ -41,6 +46,7 @@ y
 Current Status:
 	Computer:0
 	You:46
+	
 Human's Potential Total: 4
 Would you like to roll again (y/n)?
 y
@@ -48,6 +54,7 @@ y
 Current Status:
 	Computer:0
 	You:50
+	
 Human's Potential Total: 9
 Would you like to roll again (y/n)?
 y
