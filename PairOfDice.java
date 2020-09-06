@@ -2,13 +2,9 @@
 //import die.java; connect with die.java
 //PairOfDice class
 class PairOfDice 
-{  
-	
-	//constructor
-	
+{  	
 		Die die1 = new Die();
 		Die die2 = new Die();
-	
 
 	//Rolling two dice
 	public int roll()
@@ -22,22 +18,22 @@ class PairOfDice
 		return die1.getFaceValue() + die2.getFaceValue();
 	}
 	public boolean roll_double()
-        { if(die0.getFaceValue() == 1 && die1.getFaceValue()==1)
+        { if(die1.getFaceValue() == 1 && die2.getFaceValue()==1)
            return true;
      
-          if(die0.getFaceValue() == 2 && die1.getFaceValue()==2) 
+          if(die1.getFaceValue() == 2 && die2.getFaceValue()==2) 
            return true;
      
-          if(die0.getFaceValue() == 3 && die1.getFaceValue()==3)
+          if(die1.getFaceValue() == 3 && die2.getFaceValue()==3)
           return true;
 	 
-         if(die0.getFaceValue() == 4 && die1.getFaceValue()==4)
+         if(die1.getFaceValue() == 4 && die2.getFaceValue()==4)
           return true;
 	 
-         if(die0.getFaceValue() == 5 && die1.getFaceValue()==5)
+         if(die1.getFaceValue() == 5 && die2.getFaceValue()==5)
          return true;
 	 
-         if(die0.getFaceValue() == 6 && die1.getFaceValue()==6)
+         if(die1.getFaceValue() == 6 && die2.getFaceValue()==6)
           return true;
 	 
         else{
